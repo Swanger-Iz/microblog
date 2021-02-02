@@ -1,17 +1,14 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Microblog</title>
-        {% else %}
-        <title>Welcome to Microblog</title>
-        {% endif %}
-    </head>
-    <body>
-        <h2>Hello, {{ user.name }}!</h2>
+<!--Подгружает шаблон из head.html и вместо | block content | | endblock | в head.html-->
+<!--подставляет | block content | | endblock | из этого документа -->
+{% extends "head.html"%}
+
+{% block content %}
+    <h1>Hi, {{ user.username }}!</h1>
+    {% for post in posts %}
+    <div>
         <ul>
-            {% for post in posts %}
-            <div><li> {{ post.author.username }} says: {{ post.body }} </li></div>
-            {% endfor %}
+            <li> {{ post.author.username }} says: {{ post.body }}
         </ul>
-    </body>
-</html>
+    </div>
+    {% endfor %}
+{% endblock %}
